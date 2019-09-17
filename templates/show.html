@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>:: Show data from Data ::</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+
+    <ul>
+      {% for message in messages %}
+      <li><h3>{{message}}</h3></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+	<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Designation</th>
+      <th scope="col-2" colspan="2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{%for i in reg%}
+  	<tr>
+  	<td>{{i.id}}</td>
+  	<td>{{i.name}}</td>
+  	<td>{{i.email}}</td>
+  	<td>{{i.des}}</td>
+ 	<td><a href="{{url_for('editData',register_id=i.id)}}">Edit</a> </td>
+ 	<td><a href="{{url_for('deleteData',register_id=i.id)}}">Delete</a> </td>
+  	<tr>
+  	{% endfor %}
+    
+  </tbody>
+</table>
+	<div>
+		<button type="button" class="btn bg-light"><a href="/add">Add data</a> </button>
+	</div>		
+
+</body>
+</html>
